@@ -14,3 +14,16 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.container {
+  max-width: 96%;
+  width: 1480px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 2rem 0;
+  flex: 1;
+}
