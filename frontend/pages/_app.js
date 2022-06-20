@@ -1,7 +1,7 @@
 import '../styles/globals.scss';
 import { Provider, createClient } from 'urql';
 
-const client = createClient({ url: process.env.BACKEND_API });
+const client = createClient({ url: process.env.NEXT_PUBLIC_BACKEND_API });
 
 function MyApp({ Component, pageProps }) {
   return (
