@@ -27,3 +27,17 @@ a {
   padding: 2rem 0;
   flex: 1;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(71, 71, 71);
+}
