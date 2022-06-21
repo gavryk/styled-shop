@@ -1,6 +1,8 @@
 import { useQuery } from "urql";
 import { GET_PRODUCT_QUERY } from "../../lib/query";
 import { useRouter } from "next/router";
+import style from '../../styles/ProductDetail.module.scss';
+import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai';
 
 const ProductDetails = () => {
   const { query } = useRouter();
@@ -20,24 +22,24 @@ const ProductDetails = () => {
   return (
     <div className="page">
       <div className="container">
-        <div className="productContent">
-          <div className="thumbnail">
+        <div className={style.productContent}>
+          <div className={style.thumbnail}>
             <img src={image.data.attributes.formats.large.url} alt={title} />
           </div>
-          <div className="info">
+          <div className={style.info}>
             <div className="title">
               <h3>{title}</h3>
               <p>{description}</p>
             </div>
-            <div>
+            <div className={style.quantity}>
               <span>Quantity</span>
-              <button>Plus</button>
+              <button><AiFillMinusCircle /></button>
               <span>0</span>
-              <button>Minus</button>
+              <button><AiFillPlusCircle/></button>
             </div>
-          </div>
-          <div className="addToCart">
-            <button>Add To Cart</button>
+            <div className={style.addToCart}>
+              <button>Add To Cart</button>
+            </div>
           </div>
         </div>
       </div>
