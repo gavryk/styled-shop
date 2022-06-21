@@ -14,8 +14,8 @@ const ProductDetails = () => {
 
   const { data, fetching, error } = results;
   //Check for the data coming in
-  if (fetching) return <p>Loading...</p>;
-  if (error) return <p>Oops, something wrong...</p>;
+  if (fetching) return <div className="container"><p>Loading...</p></div>;
+  if (error) return <div className="container"><p>Oops, something wrong...</p></div>;
   
   const {title, description, image} = data.products.data[0].attributes;
 

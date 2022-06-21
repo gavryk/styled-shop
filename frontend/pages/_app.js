@@ -1,13 +1,17 @@
 import '../styles/globals.scss';
 import { Provider, createClient } from 'urql';
+import { Header } from '../components';
 
 const client = createClient({ url: process.env.NEXT_PUBLIC_BACKEND_API });
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider value={client}>
-      <Component {...pageProps} />
-    </Provider>
+    <div className="page">
+      <Provider value={client}>
+        <Header />
+        <Component {...pageProps} />
+      </Provider>
+    </div>
   );
 }
 

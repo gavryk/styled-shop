@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 15px 0;
+  border-bottom: 2px solid rgba(#333, 0.2);
+  margin-bottom: 30px;
+  .logo,
+  .cart {
+    font-size: 1.2rem;
+    color: var(--secondary);
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .cart {
+    font-size: 1.5rem;
+  }
+}
