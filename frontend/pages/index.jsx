@@ -25,7 +25,7 @@ export default function Home() {
 
       <div className="container">
         <div className="title">
-          <h1>Hello Next</h1>
+          <h2>Hello Next</h2>
         </div>
         {
           products && <Cards items={products} />

@@ -1,5 +1,5 @@
 .cardsGridWrapper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+    grid-gap: 1.3rem;
 }

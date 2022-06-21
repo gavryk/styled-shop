@@ -9,7 +9,7 @@ const Card = ({ attributes }) => {
     <div className={style.card}>
       <div className={style.thumbnail}>
         <img
-          src={image.data.attributes.formats.small.url}
+          src={image.data.attributes.formats.large.url}
         />
       </div>
       <div className={style.cardTitle}>
