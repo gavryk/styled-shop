@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Header.module.scss";
 import { AiFillShopping } from "react-icons/ai";
 import Link from "next/link";
+import Cart from "../Cart/Cart";
 
 const Header = () => {
   return (
@@ -16,6 +17,7 @@ const Header = () => {
           <AiFillShopping />
         </div>
       </div>
+      <Cart/>
     </header>
   );
 };
