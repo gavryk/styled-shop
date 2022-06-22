@@ -3,6 +3,8 @@ import { GET_PRODUCT_QUERY } from "../../lib/query";
 import { useRouter } from "next/router";
 import style from '../../styles/ProductDetail.module.scss';
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai';
+import { useShopContext } from "../../lib/context";
+ 
 
 const ProductDetails = () => {
   const { query } = useRouter();
@@ -19,6 +21,9 @@ const ProductDetails = () => {
   
   const {title, description, image} = data.products.data[0].attributes;
 
+  //Use Context
+  const { qty, increaseQty, decreaseQty } = useShopContext();
+
   return (
     <div className="page">
       <div className="container">
@@ -33,9 +38,9 @@ const ProductDetails = () => {
             </div>
             <div className={style.quantity}>
               <span>Quantity</span>
-              <button><AiFillMinusCircle /></button>
-              <span>0</span>
-              <button><AiFillPlusCircle/></button>
+              <button onClick={decreaseQty}><AiFillMinusCircle /></button>
+              <span>{qty}</span>
+              <button onClick={increaseQty}><AiFillPlusCircle/></button>
             </div>
             <div className={style.addToCart}>
               <button>Add To Cart</button>
