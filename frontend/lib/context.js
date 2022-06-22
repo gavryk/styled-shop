@@ -18,8 +18,23 @@ export const StateContext = ({children}) => {
       });
     };
 
+    const onAddProd = (product, quantity) => {
+        const exist = cartItems.find(item => item.slug === product.slug);
+        if(exist) {
+            setCartItems(
+                cartItems.map((item) => 
+                  item.slug === product.slug
+                    ? { ...exist, quantity: exist.quantity + quantity }
+                    : item
+                )
+            )
+        } else {
+            setCartItems([...cartItems, {...product, quantity: quantity}]);
+        }
+    }
+
     return (
-      <ShopContext.Provider value={{ qty, increaseQty, decreaseQty, showCart, setShowCart }}>
+      <ShopContext.Provider value={{ qty, increaseQty, decreaseQty, showCart, setShowCart, onAddProd }}>
         {children}
       </ShopContext.Provider>
     );

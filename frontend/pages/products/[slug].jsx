@@ -22,7 +22,7 @@ const ProductDetails = () => {
   const {title, description, image} = data.products.data[0].attributes;
 
   //Use Context
-  const { qty, increaseQty, decreaseQty } = useShopContext();
+  const { qty, increaseQty, decreaseQty, onAddProd } = useShopContext();
 
   return (
     <div className="page">
@@ -43,7 +43,7 @@ const ProductDetails = () => {
               <button onClick={increaseQty}><AiFillPlusCircle/></button>
             </div>
             <div className={style.addToCart}>
-              <button>Add To Cart</button>
+              <button onClick={() => onAddProd( data.products.data[0].attributes, qty)}>Add To Cart</button>
             </div>
           </div>
         </div>
