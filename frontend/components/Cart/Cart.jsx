@@ -4,11 +4,14 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import style from "./Cart.module.scss";
 
 const Cart = () => {
-  const { cartItems, decreaseQty, increaseQty, qty } = useShopContext();
+  const { cartItems, setShowCart, qty, showCart } = useShopContext();
 
   return (
-    <div className={style.cartWrapper}>
-      <div className={style.cart}>
+    <div
+      className={`${style.cartWrapper} ${showCart ? style.active : ''}`}
+      onClick={() => setShowCart(false)}
+    >
+      <div className={style.cart} onClick={(e) => e.stopPropagation()}>
         {cartItems.length < 1 && (
           <div className={style.empty}>
             <h3>You have more shopping to do 😉</h3>
@@ -29,11 +32,11 @@ const Cart = () => {
                     <h4 className={style.cartItemName}>{item.title}</h4>
                     <span className={style.cartItemPrice}>{item.price}$</span>
                     <div className={style.quantity}>
-                      <button onClick={decreaseQty}>
+                      <button>
                         <AiFillMinusCircle />
                       </button>
                       <span>{qty}</span>
-                      <button onClick={increaseQty}>
+                      <button>
                         <AiFillPlusCircle />
                       </button>
                     </div>
