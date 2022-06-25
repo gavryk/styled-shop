@@ -4,11 +4,18 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import style from "./Cart.module.scss";
 
 const Cart = () => {
-  const { cartItems, setShowCart, qty, showCart, onAddProd, onRemove } = useShopContext();
+  const {
+    cartItems,
+    setShowCart,
+    showCart,
+    onAddProd,
+    onRemove,
+    totalPrice,
+  } = useShopContext();
 
   return (
     <div
-      className={`${style.cartWrapper} ${showCart ? style.active : ''}`}
+      className={`${style.cartWrapper} ${showCart ? style.active : ""}`}
       onClick={() => setShowCart(false)}
     >
       <div className={style.cart} onClick={(e) => e.stopPropagation()}>
@@ -20,7 +27,7 @@ const Cart = () => {
         {cartItems.length >= 1 &&
           cartItems.map((item) => {
             return (
-              <div className={style.itemsWrapper}>
+              <div className={style.itemsWrapper} key={item.slug}>
                 <div className={style.cartItem}>
                   <div className={style.cartItemThumbnail}>
                     <img
@@ -45,6 +52,13 @@ const Cart = () => {
               </div>
             );
           })}
+
+        {cartItems.length >= 1 && (
+          <div className={style.totalPrice}>
+            <h3>Subtotal: {totalPrice} $</h3>
+            <button>Purchase</button>
+          </div>
+        )}
       </div>
     </div>
   );

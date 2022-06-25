@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./Header.module.scss";
 import { AiFillShopping } from "react-icons/ai";
 import Link from "next/link";
@@ -6,7 +6,13 @@ import Cart from "../Cart/Cart";
 import { useShopContext } from "../../lib/context";
 
 const Header = () => {
-  const {showCart, setShowCart} = useShopContext();
+  const {showCart, setShowCart, totalQuantities} = useShopContext();
+
+  useEffect(() => {
+    showCart
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "visible");
+  }, [showCart])
 
   return (
     <header className={`${style.header} container`}>
@@ -17,6 +23,7 @@ const Header = () => {
       </Link>
       <div className={style.rightHeader}>
         <div className={style.cart} onClick={() => setShowCart(true)}>
+          {totalQuantities > 0 && <span className={style.totalCount}>{totalQuantities}</span>}
           <AiFillShopping />
         </div>
       </div>

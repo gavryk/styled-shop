@@ -82,5 +82,22 @@
         }
       }
     }
+    .totalPrice {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      flex-direction: row;
+      button {
+        background: var(--primary);
+        padding: 1rem 2rem;
+        width: 100%;
+        color: #fff;
+        margin: 2rem 0;
+        outline: none;
+        border: none;
+        cursor: pointer;
+      }
+    }
   }
 }
