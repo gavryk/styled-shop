@@ -5,6 +5,8 @@ import Link from "next/link";
 import Cart from "../Cart/Cart";
 import { useShopContext } from "../../lib/context";
 
+const {AnimatePresence} = require('framer-motion');
+
 const Header = () => {
   const {showCart, setShowCart, totalQuantities} = useShopContext();
 
@@ -23,11 +25,13 @@ const Header = () => {
       </Link>
       <div className={style.rightHeader}>
         <div className={style.cart} onClick={() => setShowCart(true)}>
-          {totalQuantities > 0 && <span className={style.totalCount}>{totalQuantities}</span>}
+          {totalQuantities > 0 && (
+            <span className={style.totalCount}>{totalQuantities}</span>
+          )}
           <AiFillShopping />
         </div>
       </div>
-      <Cart/>
+      <AnimatePresence><Cart /></AnimatePresence>
     </header>
   );
 };

@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import style from '../../styles/ProductDetail.module.scss';
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai';
 import { useShopContext } from "../../lib/context";
- 
 
 const ProductDetails = () => {
   const { query } = useRouter();
