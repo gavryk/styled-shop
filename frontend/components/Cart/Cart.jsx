@@ -10,7 +10,7 @@ const cardAnim = {
   show: {
     opacity: 1,
     scale: 1,
-    transition: { delay: 0.3 }
+    transition: { delay: 0.4 }
   },
 };
 
@@ -23,6 +23,7 @@ const Cart = () => {
     <motion.div
       animate={{opacity: 1}}
       initial={{opacity: 0}}
+      exit={{opacity: 0}}
       className={style.cartWrapper}
       onClick={() => setShowCart(false)}
     >
@@ -30,6 +31,7 @@ const Cart = () => {
         initial={{x: "100%"}}
         animate={{x: "0%"}}
         transition={{type: 'tween'}}
+        exit={{x: "100%"}}
         className={style.cart}
         onClick={(e) => e.stopPropagation()}
       >
@@ -49,6 +51,8 @@ const Cart = () => {
               <motion.div className={style.itemsWrapper} key={item.slug}>
                 <motion.div
                   variants={cardAnim}
+                  animate="show"
+                  initial="hidden"
                   className={style.cartItem}
                   key={item.slug}
                 >
