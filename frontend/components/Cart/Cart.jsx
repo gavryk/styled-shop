@@ -10,7 +10,17 @@ const cardAnim = {
   show: {
     opacity: 1,
     scale: 1,
-    transition: { delay: 0.4 }
+  },
+};
+
+const cardsWrapper = {
+  hidden: { opacity: 1 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.4,
+      staggerChildren: 0.1,
+    },
   },
 };
 
@@ -21,17 +31,17 @@ const Cart = () => {
 
   return (
     <motion.div
-      animate={{opacity: 1}}
-      initial={{opacity: 0}}
-      exit={{opacity: 0}}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
       className={style.cartWrapper}
       onClick={() => setShowCart(false)}
     >
       <motion.div
-        initial={{x: "100%"}}
-        animate={{x: "0%"}}
-        transition={{type: 'tween'}}
-        exit={{x: "100%"}}
+        initial={{ x: "100%" }}
+        animate={{ x: "0%" }}
+        transition={{ type: "tween" }}
+        exit={{ x: "100%" }}
         className={style.cart}
         onClick={(e) => e.stopPropagation()}
       >
@@ -45,17 +55,17 @@ const Cart = () => {
             <h3>You have more shopping to do 😉</h3>
           </motion.div>
         )}
+        <motion.div variants={cardsWrapper} layout initial="hidden" animate="show">
         {cartItems.length >= 1 &&
           cartItems.map((item) => {
             return (
-              <motion.div className={style.itemsWrapper} key={item.slug}>
-                <motion.div
-                  variants={cardAnim}
-                  animate="show"
-                  initial="hidden"
-                  className={style.cartItem}
-                  key={item.slug}
-                >
+              <motion.div
+                variants={cardAnim}
+                layout
+                className={style.itemsWrapper}
+                key={item.slug}
+              >
+                <motion.div className={style.cartItem} key={item.slug}>
                   <div className={style.cartItemThumbnail}>
                     <img
                       src={item.image.data.attributes.formats.small.url}
@@ -79,12 +89,12 @@ const Cart = () => {
               </motion.div>
             );
           })}
-
+        </motion.div>
         {cartItems.length >= 1 && (
-          <div className={style.totalPrice}>
+          <motion.div layout className={style.totalPrice}>
             <h3>Subtotal: {totalPrice} $</h3>
             <button>Purchase</button>
-          </div>
+          </motion.div>
         )}
       </motion.div>
     </motion.div>
