@@ -17,14 +17,19 @@ const cardAnim = {
 const Cart = () => {
   const { cartItems, setShowCart, showCart, onAddProd, onRemove, totalPrice } =
     useShopContext();
-    
+
 
   return (
     <motion.div
-      className={`${style.cartWrapper} ${showCart ? style.active : ""}`}
+      animate={{opacity: 1}}
+      initial={{opacity: 0}}
+      className={style.cartWrapper}
       onClick={() => setShowCart(false)}
     >
-      <div
+      <motion.div
+        initial={{x: "100%"}}
+        animate={{x: "0%"}}
+        transition={{type: 'tween'}}
         className={style.cart}
         onClick={(e) => e.stopPropagation()}
       >
@@ -77,7 +82,7 @@ const Cart = () => {
             <button>Purchase</button>
           </div>
         )}
-      </div>
+      </motion.div>
     </motion.div>
   );
 };

@@ -31,7 +31,7 @@ const Header = () => {
           <AiFillShopping />
         </div>
       </div>
-      <AnimatePresence><Cart /></AnimatePresence>
+      <AnimatePresence>{showCart && <Cart />}</AnimatePresence>
     </header>
   );
 };
