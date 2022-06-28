@@ -4,6 +4,16 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import style from "./Cart.module.scss";
 const { motion } = require("framer-motion");
 
+//Motion Variants Animate
+const cardAnim = {
+  hidden: { opacity: 0, scale: 0.8 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: { delay: 0.3 }
+  },
+};
+
 const Cart = () => {
   const { cartItems, setShowCart, showCart, onAddProd, onRemove, totalPrice } =
     useShopContext();
@@ -14,7 +24,6 @@ const Cart = () => {
       onClick={() => setShowCart(false)}
     >
       <div
-        
         className={style.cart}
         onClick={(e) => e.stopPropagation()}
       >
@@ -33,10 +42,7 @@ const Cart = () => {
             return (
               <motion.div className={style.itemsWrapper} key={item.slug}>
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
+                  variants={cardAnim}
                   className={style.cartItem}
                   key={item.slug}
                 >
