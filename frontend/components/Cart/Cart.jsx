@@ -17,6 +17,7 @@ const cardAnim = {
 const Cart = () => {
   const { cartItems, setShowCart, showCart, onAddProd, onRemove, totalPrice } =
     useShopContext();
+    
 
   return (
     <motion.div
