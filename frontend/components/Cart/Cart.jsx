@@ -105,7 +105,7 @@ const Cart = () => {
         {cartItems.length >= 1 && (
           <motion.div layout className={style.totalPrice}>
             <h3>Subtotal: {totalPrice} $</h3>
-            <button>Purchase</button>
+            <button onClick={handleCheckout}>Purchase</button>
           </motion.div>
         )}
       </motion.div>
