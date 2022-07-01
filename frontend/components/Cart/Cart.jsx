@@ -25,21 +25,21 @@ const cardsWrapper = {
   },
 };
 
-//Payments
-const handleCheckout = async () => {
-  const stripe = await getStripe();
-  const response = await fetch('/api/stripe', {
-    method: "POST",
-    headers: {'Content-Type' : 'application/json'},
-    body: JSON.stringify(cartItems)
-  });
-  const data = await response.json();
-  await stripe.redirectToChackout({sessionId: data.id});
-}
-
 const Cart = () => {
   const { cartItems, setShowCart, showCart, onAddProd, onRemove, totalPrice } =
     useShopContext();
+
+  //Payments
+  const handleCheckout = async () => {
+    const stripePromise = await getStripe();
+    const response = await fetch("/api/stripe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cartItems),
+    });
+    const data = await response.json();
+    await stripePromise.redirectToCheckout({ sessionId: data.id });
+  };
 
   return (
     <motion.div
@@ -67,40 +67,45 @@ const Cart = () => {
             <h3>You have more shopping to do 😉</h3>
           </motion.div>
         )}
-        <motion.div variants={cardsWrapper} layout initial="hidden" animate="show">
-        {cartItems.length >= 1 &&
-          cartItems.map((item) => {
-            return (
-              <motion.div
-                variants={cardAnim}
-                layout
-                className={style.itemsWrapper}
-                key={item.slug}
-              >
-                <motion.div className={style.cartItem} key={item.slug}>
-                  <div className={style.cartItemThumbnail}>
-                    <img
-                      src={item.image.data.attributes.formats.small.url}
-                      alt={item.title}
-                    />
-                  </div>
-                  <div className={style.cartItemInfo}>
-                    <h4 className={style.cartItemName}>{item.title}</h4>
-                    <span className={style.cartItemPrice}>{item.price}$</span>
-                    <div className={style.quantity}>
-                      <button onClick={() => onRemove(item)}>
-                        <AiFillMinusCircle />
-                      </button>
-                      <span>{item.quantity}</span>
-                      <button onClick={() => onAddProd(item, 1)}>
-                        <AiFillPlusCircle />
-                      </button>
+        <motion.div
+          variants={cardsWrapper}
+          layout
+          initial="hidden"
+          animate="show"
+        >
+          {cartItems.length >= 1 &&
+            cartItems.map((item) => {
+              return (
+                <motion.div
+                  variants={cardAnim}
+                  layout
+                  className={style.itemsWrapper}
+                  key={item.slug}
+                >
+                  <motion.div className={style.cartItem} key={item.slug}>
+                    <div className={style.cartItemThumbnail}>
+                      <img
+                        src={item.image.data.attributes.formats.small.url}
+                        alt={item.title}
+                      />
                     </div>
-                  </div>
+                    <div className={style.cartItemInfo}>
+                      <h4 className={style.cartItemName}>{item.title}</h4>
+                      <span className={style.cartItemPrice}>{item.price}$</span>
+                      <div className={style.quantity}>
+                        <button onClick={() => onRemove(item)}>
+                          <AiFillMinusCircle />
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button onClick={() => onAddProd(item, 1)}>
+                          <AiFillPlusCircle />
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            );
-          })}
+              );
+            })}
         </motion.div>
         {cartItems.length >= 1 && (
           <motion.div layout className={style.totalPrice}>
