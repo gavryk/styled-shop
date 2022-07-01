@@ -2,6 +2,7 @@ import React from "react";
 import { useShopContext } from "../../lib/context";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import style from "./Cart.module.scss";
+import getStripe from "../../lib/getStripe";
 const { motion } = require("framer-motion");
 
 //Motion Variants Animate
@@ -24,10 +25,21 @@ const cardsWrapper = {
   },
 };
 
+//Payments
+const handleCheckout = async () => {
+  const stripe = await getStripe();
+  const response = await fetch('/api/stripe', {
+    method: "POST",
+    headers: {'Content-Type' : 'application/json'},
+    body: JSON.stringify(cartItems)
+  });
+  const data = await response.json();
+  await stripe.redirectToChackout({sessionId: data.id});
+}
+
 const Cart = () => {
   const { cartItems, setShowCart, showCart, onAddProd, onRemove, totalPrice } =
     useShopContext();
-
 
   return (
     <motion.div
