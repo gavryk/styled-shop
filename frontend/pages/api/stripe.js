@@ -27,6 +27,7 @@ export default async function handler(req, res) {
               allow_promotion_codes: true,
               shipping_options: [
                 { shipping_rate: "shr_1LHRhMHV0zOLVwJsNXGBb7c7" },
+                { shipping_rate: "shr_1LHRuqHV0zOLVwJs3OUcaqQI" },
               ],
               line_items: req.body.map((item) => {
                 return {
@@ -42,7 +43,7 @@ export default async function handler(req, res) {
                   },
                   adjustable_quantity: {
                     enabled: true,
-                    minimum: 1
+                    minimum: 1,
                   },
                   quantity: item.quantity,
                 };
