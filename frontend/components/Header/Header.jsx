@@ -4,11 +4,14 @@ import { AiFillShopping } from "react-icons/ai";
 import Link from "next/link";
 import Cart from "../Cart/Cart";
 import { useShopContext } from "../../lib/context";
+import User from "../User/User";
+import {useUser} from '@auth0/nextjs-auth0'
 
 const {AnimatePresence, motion} = require('framer-motion');
 
 const Header = () => {
   const {showCart, setShowCart, totalQuantities} = useShopContext();
+  const {user, error, isLoading} = useUser();
 
   useEffect(() => {
     showCart
@@ -24,11 +27,19 @@ const Header = () => {
         </div>
       </Link>
       <div className={style.rightHeader}>
+        <User />
         <div className={style.cart} onClick={() => setShowCart(true)}>
           {totalQuantities > 0 && (
-            <motion.span animate={{scale: 1}} initial={{scale: 0}} className={style.totalCount}>{totalQuantities}</motion.span>
+            <motion.span
+              animate={{ scale: 1 }}
+              initial={{ scale: 0 }}
+              className={style.totalCount}
+            >
+              {totalQuantities}
+            </motion.span>
           )}
           <AiFillShopping />
+          <span>Cart</span>
         </div>
       </div>
       <AnimatePresence>{showCart && <Cart />}</AnimatePresence>

@@ -1,0 +1,22 @@
+.profile {
+    color: var(--secondary);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1.3rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0;
+    text-align: center;
+    img {
+        width: 1.3rem;
+        height: 1.3rem;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+    svg {
+        margin: 0 auto;
+    }
+    span {
+        font-size: .7rem;
+    }
+}
