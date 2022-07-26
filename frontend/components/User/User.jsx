@@ -7,10 +7,9 @@ import { useUser } from "@auth0/nextjs-auth0";
 const User = () => {
   const route = useRouter();
   const {user} = useUser();
-  console.log(user);
   if (user) {
     return (
-      <div className={styles.profile}>
+      <div className={styles.profile} onClick={() => route.push('/profile')}>
         <img src={user.picture} alt={user.name} />
         <span>{user.name}</span>
       </div>

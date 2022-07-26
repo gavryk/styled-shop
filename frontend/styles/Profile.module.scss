@@ -1,0 +1,42 @@
+.profilePage {
+  position: relative;
+}
+
+.orderBlock {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 15px;
+  padding: 2rem 0;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  background-color: var(--primary);
+  padding: 1rem 2rem;
+  color: #fff;
+  display: flex;
+  font-size: 1.3rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.order {
+  background-color: #fff;
+  padding: 3rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h3,
+  h4 {
+    padding-bottom: 0;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+}
