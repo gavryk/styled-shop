@@ -4,10 +4,17 @@ import { useRouter } from "next/router";
 import { useShopContext } from "../../lib/context";
 import style from '../../styles/ProductDetail.module.scss';
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai';
+import { useEffect } from "react";
 
 const ProductDetails = () => {
   //Use Context
-  const { qty, increaseQty, decreaseQty, onAddProd } = useShopContext();
+  const { qty, increaseQty, decreaseQty, onAddProd, setQty } = useShopContext();
+
+  //reset Qty
+  useEffect(() => {
+    setQty(1)
+  }, [])
+
   const { query } = useRouter();
   //FETCH GRAPHQL DATA
   const [results] = useQuery({
@@ -56,7 +63,10 @@ const ProductDetails = () => {
             </div>
             <div className={style.addToCart}>
               <button
-                onClick={() => onAddProd(data.products.data[0].attributes, qty)}
+                onClick={() => {
+                  onAddProd(data.products.data[0].attributes, qty);
+                  
+                }}
               >
                 Add To Cart
               </button>

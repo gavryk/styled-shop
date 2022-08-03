@@ -1,8 +1,10 @@
-import '../styles/globals.scss';
+import React from 'react';
 import { Provider, createClient } from 'urql';
 import { Header } from '../components';
 import { StateContext } from '../lib/context';
 import { UserProvider } from '@auth0/nextjs-auth0';
+
+import "../styles/globals.scss";
 
 const client = createClient({ url: process.env.NEXT_PUBLIC_BACKEND_API });
 
